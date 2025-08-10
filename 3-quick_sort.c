@@ -36,25 +36,23 @@ static int lomuto_partition(int *array, size_t size, int low, int high)
 
 	for (j = low; j < high; j++)
 	{
-		/* If current element is smaller than pivot, move it to the left side */
 		if (array[j] < pivot)
 		{
 			i++;
 			if (i != j)
 			{
 				swap_ints(&array[i], &array[j]);
-				print_array(array, size);
+				if (array[i] != array[j])
+					print_array(array, size);
 			}
 		}
 	}
-
-	/* Place the pivot in the correct sorted position */
 	if (i + 1 != high)
 	{
 		swap_ints(&array[i + 1], &array[high]);
-		print_array(array, size);
+		if (array[i + 1] != array[high])
+			print_array(array, size);
 	}
-
 	return (i + 1);
 }
 
